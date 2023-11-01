@@ -1,4 +1,4 @@
-package com.practice;
+package com.solvd.laba.hw2trainstation;
 import java.time.LocalDate;
 
 // This class contains Train details

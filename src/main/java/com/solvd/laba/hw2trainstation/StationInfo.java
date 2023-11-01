@@ -1,4 +1,4 @@
-package com.practice;
+package com.solvd.laba.hw2trainstation;
 
 public class StationInfo {
         private String name;
