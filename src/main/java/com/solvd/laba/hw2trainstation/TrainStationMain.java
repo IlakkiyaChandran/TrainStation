@@ -1,52 +1,87 @@
 package com.solvd.laba.hw2trainstation;
+
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class TrainStationMain {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args){
-
-        // Passenger details
-        PassengerInfo passenger1 = new PassengerInfo("Dhiya", LocalDate.of(1990, 6, 20));
-        PassengerInfo passenger2 = new PassengerInfo("Krish", LocalDate.of(2000, 8, 23));
-
-        // Train Details
+        // Display available trains
+        System.out.println("Available Trains:");
         TrainDetails train1 = new TrainDetails("Local Train", LocalDate.now());
-        TrainDetails train2 = new TrainDetails("Express Train", LocalDate.now());
+        TrainDetails train2  = new TrainDetails("Express Train", LocalDate.now());
+        System.out.println("1. " + train1);
+        System.out.println("2. " + train2);
 
-        StationInfo station = new StationInfo("\tCENTRAL STATION");
+        Platform platform1 = new Platform(1); // Platform for train1
+        Platform platform2 = new Platform(2); // Platform for train2
+        // Set the platforms for the trains
+        train1.setPlatform(platform1);
+        train2.setPlatform(platform2);
+
+        System.out.print("Select a train (1 or 2): ");
+        int selectedTrainNumber = scanner.nextInt();
+        TrainDetails selectedTrain = (selectedTrainNumber == 1) ? train1 : train2;
+
+        System.out.print("Enter the number of passengers: ");
+        int numPassengers = scanner.nextInt();
+
+        // Create an array to store Passenger objects
+        PassengerInfo[] passengers = new PassengerInfo[numPassengers];
+
+        // Populate the array with Passenger objects
+        for (int i = 0; i < numPassengers; i++) {
+            System.out.println("Passenger " + (i + 1));
+            System.out.print("Enter passenger name: ");
+            String name = scanner.next();
+            System.out.print("Enter passenger age: ");
+            int age = scanner.nextInt();
+            // Create a new Passenger object and add it to the array
+            passengers[i] = new PassengerInfo(name, age);
+        }
+
+        System.out.println("Passenger Details:");
+        for (PassengerInfo passenger : passengers) {
+            System.out.println(passenger);
+        }
+
+        System.out.println("TRAIN TICKETS:");
+
+        StationInfo station = new StationInfo("CENTRAL STATION");
         station.addTrain(train1);
         station.addTrain(train2);
 
-        Platform platform1 = new Platform(3);
-        train1.setPlatform(platform1);
-        Platform platform2 = new Platform(1);
-        train2.setPlatform(platform2);
+        System.out.println(station.getName());
 
-        Coach train1coach = new Coach(10);
-        train1.addCoach(train1coach);
-        Coach train2coach = new Coach(15);
-        train2.addCoach(train2coach);
+        LocalDate fixedDate = LocalDate.now(); // Fixed date
+        String fixedTime = "08:00"; // Fixed time
 
-        Seat train1seat = new Seat(10, 'B');
-        train1coach.addSeat(train1seat);
-        Seat train2seat = new Seat(20, 'A');
-        train2coach.addSeat(train2seat);
+        for (int i = 0; i < numPassengers; i++) {
+            System.out.println("Ticket " + (i + 1));
 
-        Schedule train1schedule = new Schedule(LocalDate.now(), "08:00am", "1:00pm");
-        train1.setSchedule(train1schedule);
-        Schedule train2schedule = new Schedule(LocalDate.now(), "09:00am", "10:00am");
-        train2.setSchedule(train2schedule);
+            // Auto-select a coach and seat
+            Coach selectedCoach = selectedTrain.getCoaches()[i % selectedTrain.getCoaches().length];
+            Seat selectedSeat = selectedCoach.getSeats()[i % 100]; // Assuming 100 seats per coach
 
-        //Generating tickets for two different trains
-        System.out.println("TRAIN TICKETS");
+            Schedule selectedSchedule = new Schedule(fixedDate, fixedTime);
 
-        TicketInfo ticket1 = new TicketInfo(train1, passenger1, train1seat, train1schedule);
-        ticket1.getDetails(train1, passenger1, train1seat, train1schedule );
-        TicketInfo.ticketPrice(train1, passenger1, train1seat);
+            Platform selectedPlatform = selectedTrain.getPlatform();
 
-        TicketInfo ticket2 = new TicketInfo(train2, passenger2, train2seat,train2schedule, 10.0);
-        ticket2.getDetails(train2, passenger2, train2seat, train2schedule);
-        TicketInfo.ticketPrice(train2, passenger2, train2seat, 10.0);
+            //System.out.println("Passenger: " + passengers[i].getName());
+            //System.out.println("Coach Number: " + selectedCoach.getNumber());
 
+            // Check if selectedSeat is not null before accessing its properties
+            if (selectedSeat != null) {
+                //System.out.println("Seat Number: " + selectedSeat.getNumber() + selectedSeat.getSection());
+            } else {
+                System.out.println("Selected seat is null.");
+            }
+
+            //System.out.println("Platform Number: " + selectedPlatform.getNumber());
+
+            TicketInfo ticket = new TicketInfo(selectedTrain, passengers[i], selectedSeat, selectedSchedule, selectedPlatform);
+            ticket.getDetails(selectedTrain, passengers[i], selectedSeat, selectedSchedule, selectedPlatform);
+        }
     }
 }

@@ -2,24 +2,19 @@ package com.solvd.laba.hw2trainstation;
 import java.time.LocalDate;
 public class Schedule {
         private LocalDate date;
-        private String startTime;
-        private String endTime;
+        private String time;
 
-        public Schedule(LocalDate date, String startTime, String endTime) {
+        public Schedule(LocalDate date, String time) {
             this.date = date;
-            this.startTime = startTime;
-            this.endTime = endTime;
+            this.time = time;
         }
 
         public LocalDate getDate() {
             return date;
         }
 
-        public String getStartTime() {
-            return startTime;
+        public String getTime() {
+            return time;
         }
 
-        public String getEndTime() {
-            return endTime;
-        }
 }

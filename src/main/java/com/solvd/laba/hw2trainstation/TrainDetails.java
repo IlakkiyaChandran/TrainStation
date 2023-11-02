@@ -2,7 +2,7 @@ package com.solvd.laba.hw2trainstation;
 import java.time.LocalDate;
 
 // This class contains Train details
-public class TrainDetails {
+public class TrainDetails extends Transport {
     private String trainname;
     private Platform platform;
     private Coach[] coaches=new Coach[15];
@@ -10,27 +10,39 @@ public class TrainDetails {
     private Schedule schedule;
     private LocalDate departureDate;
 
-    public TrainDetails(String trainname, LocalDate departureDate) {
-        this.trainname = trainname;
+    public TrainDetails(String name, LocalDate departureDate) {
+        super(name, departureDate.hashCode()); // Using hashCode as a unique number
         this.departureDate = departureDate;
-    }
 
-    public void addCoach(Coach coach) {
-        if(coachIndex < coaches.length) {
-            this.coaches[coachIndex++] = coach;
+        for (int i = 0; i < coaches.length; i++) {
+            coaches[i] = new Coach(i + 1);
         }
     }
-
     public void setPlatform(Platform platform) {
         this.platform = platform;
     }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
+    public Platform getPlatform() {
+        return platform;
+    }
+ /*   public void addCoach(Coach coach) {
+        if(coachIndex < coaches.length) {
+            this.coaches[coachIndex++] = coach;
+        }
+    }*/
+    public Coach[] getCoaches() {
+        return coaches;
+    }
+    @Override
+    public void additionalMethod() {
+        // Implementation of the additional abstract method
+    }
+    @Override
+    public String getInfo() {
+        return "Train: " + name + ", Departure date: " + departureDate;
     }
 
-    public String getName() {
-        return trainname;
+    @Override
+    public String toString() {
+        return "Train: " + name + ", Departure date: " + departureDate;
     }
-
 }
