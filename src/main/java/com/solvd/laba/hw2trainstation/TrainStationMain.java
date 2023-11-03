@@ -64,7 +64,6 @@ public class TrainStationMain {
             Seat selectedSeat = selectedCoach.getSeats()[i % 100];
 
             Schedule selectedSchedule = new Schedule(fixedDate, fixedTime);
-
             Platform selectedPlatform = selectedTrain.getPlatform();
 
             //Printing the Tickets
