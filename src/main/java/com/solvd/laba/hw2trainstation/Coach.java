@@ -11,17 +11,14 @@ public class Coach {
             seats[i] = new Seat(i + 1, 'A'); // Adjust the section as needed
         }
     }
-
     public void addSeat(Seat seat) {
         if (seatIndex < seats.length) {
             seats[seatIndex++] = seat;
         }
     }
-
     public Seat[] getSeats() {
         return seats;
     }
-
     public int getNumber() {
         return number;
     }

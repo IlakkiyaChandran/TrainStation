@@ -24,25 +24,20 @@ public class TrainDetails extends Transport {
     public Platform getPlatform() {
         return platform;
     }
- /*   public void addCoach(Coach coach) {
-        if(coachIndex < coaches.length) {
-            this.coaches[coachIndex++] = coach;
-        }
-    }*/
     public Coach[] getCoaches() {
         return coaches;
     }
     @Override
-    public void additionalMethod() {
-        // Implementation of the additional abstract method
+    public String toString() {
+        return "Train: " + name + ", Departure date: " + departureDate;
     }
+    // Implementation of the abstract methods
     @Override
     public String getInfo() {
         return "Train: " + name + ", Departure date: " + departureDate;
     }
-
     @Override
-    public String toString() {
-        return "Train: " + name + ", Departure date: " + departureDate;
+    public void additionalMethod() {
+        System.out.println("Implementation of Abstract method");
     }
 }

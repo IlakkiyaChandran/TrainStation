@@ -8,7 +8,6 @@ public class Seat {
         this.number = number;
         this.section = section;
     }
-
     public int getNumber() {
         return number;
     }

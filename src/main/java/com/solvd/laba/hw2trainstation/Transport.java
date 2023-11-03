@@ -8,7 +8,8 @@ abstract class Transport {
         this.name = name;
         this.number = number;
     }
+    // Two abstract methods
     public abstract String getInfo();
-    public abstract void additionalMethod(); // Adding a new abstract method
+    public abstract void additionalMethod();
 
 }

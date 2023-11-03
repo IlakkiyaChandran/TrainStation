@@ -7,8 +7,8 @@ public class TrainStationMain {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Display available trains
-        System.out.println("Available Trains:");
+        // Displaying available trains
+        System.out.println("CENTRAL Station - Available Trains:");
         TrainDetails train1 = new TrainDetails("Local Train", LocalDate.now());
         TrainDetails train2  = new TrainDetails("Express Train", LocalDate.now());
         System.out.println("1. " + train1);
@@ -16,6 +16,7 @@ public class TrainStationMain {
 
         Platform platform1 = new Platform(1); // Platform for train1
         Platform platform2 = new Platform(2); // Platform for train2
+
         // Set the platforms for the trains
         train1.setPlatform(platform1);
         train2.setPlatform(platform2);
@@ -37,16 +38,13 @@ public class TrainStationMain {
             String name = scanner.next();
             System.out.print("Enter passenger age: ");
             int age = scanner.nextInt();
-            // Create a new Passenger object and add it to the array
+
+            // Create a new Passenger object and adding it to the array
             passengers[i] = new PassengerInfo(name, age);
         }
 
-        System.out.println("Passenger Details:");
-        for (PassengerInfo passenger : passengers) {
-            System.out.println(passenger);
-        }
-
         System.out.println("TRAIN TICKETS:");
+        System.out.println("--------------");
 
         StationInfo station = new StationInfo("CENTRAL STATION");
         station.addTrain(train1);
@@ -54,32 +52,22 @@ public class TrainStationMain {
 
         System.out.println(station.getName());
 
-        LocalDate fixedDate = LocalDate.now(); // Fixed date
-        String fixedTime = "08:00"; // Fixed time
+        //Fixed date and time
+        LocalDate fixedDate = LocalDate.now();
+        String fixedTime = "08:00am";
 
         for (int i = 0; i < numPassengers; i++) {
             System.out.println("Ticket " + (i + 1));
 
             // Auto-select a coach and seat
             Coach selectedCoach = selectedTrain.getCoaches()[i % selectedTrain.getCoaches().length];
-            Seat selectedSeat = selectedCoach.getSeats()[i % 100]; // Assuming 100 seats per coach
+            Seat selectedSeat = selectedCoach.getSeats()[i % 100];
 
             Schedule selectedSchedule = new Schedule(fixedDate, fixedTime);
 
             Platform selectedPlatform = selectedTrain.getPlatform();
 
-            //System.out.println("Passenger: " + passengers[i].getName());
-            //System.out.println("Coach Number: " + selectedCoach.getNumber());
-
-            // Check if selectedSeat is not null before accessing its properties
-            if (selectedSeat != null) {
-                //System.out.println("Seat Number: " + selectedSeat.getNumber() + selectedSeat.getSection());
-            } else {
-                System.out.println("Selected seat is null.");
-            }
-
-            //System.out.println("Platform Number: " + selectedPlatform.getNumber());
-
+            //Printing the Tickets
             TicketInfo ticket = new TicketInfo(selectedTrain, passengers[i], selectedSeat, selectedSchedule, selectedPlatform);
             ticket.getDetails(selectedTrain, passengers[i], selectedSeat, selectedSchedule, selectedPlatform);
         }

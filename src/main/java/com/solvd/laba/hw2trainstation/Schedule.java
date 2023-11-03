@@ -8,7 +8,6 @@ public class Schedule {
             this.date = date;
             this.time = time;
         }
-
         public LocalDate getDate() {
             return date;
         }
