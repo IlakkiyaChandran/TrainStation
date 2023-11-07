@@ -5,7 +5,7 @@ public class BubbleSort {
 
         //Checking if the command line input parameters are specified or not
         if (args.length == 0) {
-            System.out.println("Please enter the elements to be sorted");
+            System.out.println("Please enter the elements to be sorted:");
         } else {
             int num = args.length, temp = 0;
             int arr[] = new int[num];

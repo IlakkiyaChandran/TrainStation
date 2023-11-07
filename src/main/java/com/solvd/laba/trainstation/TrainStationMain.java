@@ -80,7 +80,7 @@ public class TrainStationMain {
             TrainStationUtil.displayFarewellMessage(station);
         }
         else {
-            System.out.println("Invalid train selection.");
+            System.out.println("Invalid train selection!");
         }
     }
 }
