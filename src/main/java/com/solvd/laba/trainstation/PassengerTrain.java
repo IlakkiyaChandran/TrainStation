@@ -1,7 +1,6 @@
 package com.solvd.laba.trainstation;
 
 public class PassengerTrain extends Train implements Boarding,LuggageHandler {
-
     private String name;
     public PassengerTrain(String name) {
         super(name, "");

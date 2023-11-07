@@ -2,10 +2,8 @@ package com.solvd.laba.trainstation;
 import java.util.Random;
 import java.util.Objects;
 
-
-
 public class Train implements Ticket, Payment, Schedule {
-    private String name;
+    private final String name;
     private String schedule;
 
     public Train(String name, String schedule) {
@@ -78,11 +76,11 @@ public class Train implements Ticket, Payment, Schedule {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Train train = (Train) obj;
-        return Objects.equals(name, train.name) &&
-                Objects.equals(schedule, train.schedule);
+        return Objects.equals(getName(), train.name) &&
+                Objects.equals(getSchedule(), train.schedule);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(name, schedule);
+        return Objects.hash(getName(), getSchedule());
     }
 }

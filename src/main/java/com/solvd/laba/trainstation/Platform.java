@@ -1,7 +1,7 @@
 package com.solvd.laba.trainstation;
 
 public class Platform {
-    private String platformNumber;
+    private final String platformNumber;
 
     protected Platform(String platformNumber) {
         this.platformNumber = platformNumber;

@@ -2,7 +2,7 @@ package com.solvd.laba.trainstation;
 
 import java.util.Objects;
 
-public class ChildPassenger extends Passenger implements Boarding {
+public class ChildPassenger extends Passenger {
     private String name;
     private int age;
     public ChildPassenger(String name, int age) {
@@ -20,16 +20,8 @@ public class ChildPassenger extends Passenger implements Boarding {
     public void setName(String name) {
         this.name = name;
     }
-    public void setName(int age) {
+    public void setAge(int age) {
         this.age = age;
-    }
-    @Override
-    public void startBoarding() {
-        System.out.println("Passenger " + getName() + " started boarding.");
-    }
-    @Override
-    public void endBoarding() {
-        System.out.println("Passenger " + getName() + " completed boarding.");
     }
 
     @Override
@@ -37,7 +29,7 @@ public class ChildPassenger extends Passenger implements Boarding {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChildPassenger passenger = (ChildPassenger) o;
-        return age == passenger.age && Objects.equals(name, passenger.name);
+        return getAge() == passenger.getAge() && Objects.equals(getName(), passenger.getName());
     }
     @Override
     public int hashCode() {
