@@ -76,8 +76,8 @@ public class Train implements Ticket, Payment, Schedule {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Train train = (Train) obj;
-        return Objects.equals(getName(), train.name) &&
-                Objects.equals(getSchedule(), train.schedule);
+        return Objects.equals(getName(), train.getName()) &&
+                Objects.equals(getSchedule(), train.getSchedule());
     }
     @Override
     public int hashCode() {
