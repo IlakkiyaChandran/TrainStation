@@ -1,4 +1,4 @@
-package com.solvd.laba.hw1bubblesort;
+package com.solvd.laba.bubblesort;
 
 public class BubbleSort {
     public static void main(String[] args) {
