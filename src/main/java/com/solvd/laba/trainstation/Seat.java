@@ -1,7 +1,7 @@
 package com.solvd.laba.trainstation;
 
 public final class Seat {
-public void allocatedSeat(){
+public final void  finalSeat(){
     System.out.println("Allocated seat cannot be changed!");
 }
     }
